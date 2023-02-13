@@ -1,0 +1,120 @@
+type AdminFeeUpdated @entity(immutable: true) {
+  id: Bytes!
+  newAdminFee: Int! # uint16
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ERC20Permit @entity(immutable: true) {
+  id: Bytes!
+  erc20Contract: Bytes! # address
+  isPermitted: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type LoanLiquidated @entity(immutable: true) {
+  id: Bytes!
+  loanId: BigInt! # uint32
+  borrower: Bytes! # address
+  lender: Bytes! # address
+  loanPrincipalAmount: BigInt! # uint256
+  nftCollateralId: BigInt! # uint256
+  loanMaturityDate: BigInt! # uint256
+  loanLiquidationDate: BigInt! # uint256
+  nftCollateralContract: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type LoanRenegotiated @entity(immutable: true) {
+  id: Bytes!
+  loanId: BigInt! # uint32
+  borrower: Bytes! # address
+  lender: Bytes! # address
+  newLoanDuration: BigInt! # uint32
+  newMaximumRepaymentAmount: BigInt! # uint256
+  renegotiationFee: BigInt! # uint256
+  renegotiationAdminFee: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type LoanRepaid @entity(immutable: true) {
+  id: Bytes!
+  loanId: BigInt! # uint32
+  borrower: Bytes! # address
+  lender: Bytes! # address
+  loanPrincipalAmount: BigInt! # uint256
+  nftCollateralId: BigInt! # uint256
+  amountPaidToLender: BigInt! # uint256
+  adminFee: BigInt! # uint256
+  revenueShare: BigInt! # uint256
+  revenueSharePartner: Bytes! # address
+  nftCollateralContract: Bytes! # address
+  loanERC20Denomination: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type LoanStarted @entity(immutable: true) {
+  id: Bytes!
+  loanId: BigInt! # uint32
+  borrower: Bytes! # address
+  lender: Bytes! # address
+  loanTerms_loanPrincipalAmount: BigInt! # uint256
+  loanTerms_maximumRepaymentAmount: BigInt! # uint256
+  loanTerms_nftCollateralId: BigInt! # uint256
+  loanTerms_loanERC20Denomination: Bytes! # address
+  loanTerms_loanDuration: BigInt! # uint32
+  loanTerms_loanInterestRateForDurationInBasisPoints: Int! # uint16
+  loanTerms_loanAdminFeeInBasisPoints: Int! # uint16
+  loanTerms_nftCollateralWrapper: Bytes! # address
+  loanTerms_loanStartTime: BigInt! # uint64
+  loanTerms_nftCollateralContract: Bytes! # address
+  loanTerms_borrower: Bytes! # address
+  loanExtras_revenueSharePartner: Bytes! # address
+  loanExtras_revenueShareInBasisPoints: Int! # uint16
+  loanExtras_referralFeeInBasisPoints: Int! # uint16
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MaximumLoanDurationUpdated @entity(immutable: true) {
+  id: Bytes!
+  newMaximumLoanDuration: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type OwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Paused @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Unpaused @entity(immutable: true) {
+  id: Bytes!
+  account: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
